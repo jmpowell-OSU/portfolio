@@ -1,5 +1,3 @@
-// latest-chess-game.js
-
 const USERNAME = "choccymilk4";
 
 async function loadLatestGame() {
@@ -12,7 +10,7 @@ async function loadLatestGame() {
     const latestArchiveUrl =
       archivesData.archives[archivesData.archives.length - 1];
 
-    // Fetch latest archive
+    // Fetch games from latest archive
     const gamesRes = await fetch(latestArchiveUrl);
     const gamesData = await gamesRes.json();
 
@@ -20,18 +18,25 @@ async function loadLatestGame() {
     const latestGame = gamesData.games[gamesData.games.length - 1];
     const pgn = latestGame.pgn;
 
-    // <><><><> Render PGN <><><><>
-    new PgnViewer({
-      boardName: "latest-game-board",
+    // Determine which color I played
+    const orientation =
+      latestGame.white.username.toLowerCase() === USERNAME.toLowerCase()
+        ? "white"
+        : "black";
+
+    // Render using pgnvjs (mliebelt's pgn-viewer)
+    PGNV.pgnView("latest-game-board", {
       pgn: pgn,
+      pieceStyle: "merida",
+      orientation: orientation,
+      showCoords: true,
       theme: "brown",
-      showCoordinates: true,
-      orientation: "white"
+      layout: "top"
     });
   } catch (err) {
     console.error("Failed to load latest chess game:", err);
-    document.getElementById("chess-error").textContent =
-      "Unable to load latest game.";
+    const el = document.getElementById("chess-error");
+    if (el) el.textContent = "Unable to load latest game.";
   }
 }
 
