@@ -10,6 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://www.pgnviewer.com/css/pgnviewer.css">
+		<script src="https://www.pgnviewer.com/js/pgnviewer.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -122,7 +124,14 @@
 									</section>
 							</div>
 					</section>
-
+					<!-- Chess Section -->
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<h2>Watch my Latest Chess Game:</h2>
+							<div id="latest-game-board" style="max-width: 420px;"></div>
+							<div id="chess-error" style="color: #a00; font-size: 0.9em;"></div>
+						</div>
+					</section>
 									
 				
 				<!-- Footer -->
@@ -141,9 +150,11 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="/assets/js/latest-chess-game.js"></script>
 
 	</body>
 </html>
+
 
 
 
